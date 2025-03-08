@@ -1,6 +1,7 @@
 "use strict";
 
 const chalk = require("chalk");
+let bannerShown = false;
 
 /**
  * Logger utility for consistent CLI messaging
@@ -64,6 +65,8 @@ const logger = {
    * Creates an elegant banner with Eleva branding
    */
   banner: () => {
+    if (bannerShown) return; // Skip if already shown
+
     const elevaPurple = chalk.hex("#4B0082");
     const elevaTeal = chalk.hex("#00BCD4");
 
@@ -78,6 +81,8 @@ const logger = {
         chalk.bold("  Pure JavaScript. Pure Performance. Simply Elegant.") +
         "\n"
     );
+
+    bannerShown = true; // Mark as shown
   },
 };
 

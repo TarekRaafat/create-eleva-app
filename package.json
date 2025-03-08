@@ -1,11 +1,16 @@
 {
   "name": "create-eleva-app",
-  "version": "0.1.0",
-  "description": "CLI tool to scaffold Eleva.js projects",
+  "version": "0.1.0-beta.1",
+  "description": "Create Eleva apps with zero configuration",
   "main": "src/index.js",
   "bin": {
     "create-eleva-app": "bin/eleva-cli.js"
   },
+  "files": [
+    "bin/",
+    "src/",
+    "templates/"
+  ],
   "engines": {
     "node": ">=14.0.0"
   },
@@ -19,10 +24,15 @@
     "javascript",
     "cli",
     "scaffold",
+    "create-eleva-app",
     "vanilla-js",
     "frontend-framework"
   ],
-  "author": "Eleva Team",
+  "author": {
+    "name": "Tarek Raafat",
+    "email": "tarek.m.raafat@gmail.com",
+    "url": "https://www.tarekraafat.com"
+  },
   "license": "MIT",
   "dependencies": {
     "chalk": "^4.1.2",

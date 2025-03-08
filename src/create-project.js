@@ -4,6 +4,7 @@ const fs = require("fs-extra");
 const path = require("path");
 const { execSync } = require("child_process");
 const ora = require("ora");
+const chalk = require("chalk"); // Add this line
 const { promptForOptions } = require("./questions");
 const logger = require("./logger");
 
@@ -85,14 +86,14 @@ async function copyTemplateFiles(projectPath, config) {
 
   try {
     // Base template path
-    const templateDir = path.resolve(__dirname, "templates/base");
+    const templateDir = path.resolve(__dirname, "../templates/base");
 
     // Copy base template files
     await fs.copy(templateDir, projectPath);
 
     // If router is enabled, copy router templates
     if (config.useRouter) {
-      const routerTemplateDir = path.resolve(__dirname, "templates/router");
+      const routerTemplateDir = path.resolve(__dirname, "../templates/router");
       await fs.copy(routerTemplateDir, projectPath, { overwrite: true });
     }
 

@@ -6,6 +6,9 @@ const { createProject } = require("./create-project");
 const { version } = require("../package.json");
 const logger = require("./logger");
 
+// Track if command has been executed
+let commandExecuted = false;
+
 // Define CLI
 program
   .name("create-eleva-app")
@@ -14,14 +17,17 @@ program
 
 // Create new project command
 program
-  .command("create [name]")
-  .description("create a new Eleva.js project")
+  .argument("[name]", "project name")
   .option("-y, --yes", "skip prompts and use default settings")
   .option("--router", "include Eleva Router")
   .option("--no-router", "exclude Eleva Router")
   .option("--typescript", "use TypeScript")
   .option("--no-typescript", "use JavaScript")
   .action(async (name, options) => {
+    // Guard against duplicate execution
+    if (commandExecuted) return;
+    commandExecuted = true;
+
     try {
       const projectPath = name
         ? path.resolve(process.cwd(), name)
@@ -33,10 +39,11 @@ program
     }
   });
 
-// Add more commands here as needed
+// Parse CLI arguments
+program.parse(process.argv);
 
-// Display help if no arguments provided
-if (process.argv.length <= 2) {
+// Display help if no arguments provided and no command was executed
+if (!process.argv.slice(2).length && !commandExecuted) {
   program.help();
 }
 

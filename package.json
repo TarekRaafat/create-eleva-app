@@ -1,0 +1,47 @@
+{
+  "name": "create-eleva-app",
+  "version": "0.1.0",
+  "description": "CLI tool to scaffold Eleva.js projects",
+  "main": "src/index.js",
+  "bin": {
+    "create-eleva-app": "bin/eleva-cli.js"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "keywords": [
+    "eleva",
+    "eleva.js",
+    "javascript",
+    "cli",
+    "scaffold",
+    "vanilla-js",
+    "frontend-framework"
+  ],
+  "author": "Eleva Team",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^9.4.1",
+    "fs-extra": "^10.1.0",
+    "inquirer": "^8.2.5",
+    "ora": "^5.4.1",
+    "validate-npm-package-name": "^4.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.26.0",
+    "jest": "^29.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TarekRaafat/create-eleva-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TarekRaafat/create-eleva-app/issues"
+  },
+  "homepage": "https://github.com/TarekRaafat/create-eleva-app#readme"
+}

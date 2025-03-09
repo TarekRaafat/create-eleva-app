@@ -88,6 +88,8 @@ const Home = {
       }
       
       .counter-display {
+        display: flex;
+        justify-content: center;
         font-size: 1.5rem;
         font-weight: bold;
         min-width: 3rem;

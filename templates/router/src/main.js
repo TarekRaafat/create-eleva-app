@@ -7,31 +7,15 @@
 
 import Eleva from "eleva";
 import ElevaRouter from "eleva-router";
-import App from "./components/App.js";
-import routes from "./routes.js";
+import { default as routes, defaultRoute } from "./routes.js";
 
 // Initialize Eleva application instance
 const app = new Eleva("{{projectName}}");
-
-// Register the App component
-app.component("App", App);
 
 // Configure the router
 app.use(ElevaRouter, {
   container: document.getElementById("app"),
   mode: "history",
-  routes: routes,
+  routes,
+  defaultRoute,
 });
-
-// For apps with router, you typically mount the App component,
-// and the router handles mounting route components inside your App container
-app
-  .mount(document.getElementById("app"), "App")
-  .then((instance) => {
-    // App successfully mounted
-    console.log("Application with router successfully mounted! 🚀");
-  })
-  .catch((error) => {
-    // Handle mount errors
-    console.error("Error mounting application:", error);
-  });

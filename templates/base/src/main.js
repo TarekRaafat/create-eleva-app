@@ -14,12 +14,19 @@ const app = new Eleva("{{projectName}}");
 // Register the App component
 app.component("App", App);
 
+// Mount with performance tracking
+const startTime = performance.now();
+
 // Mount the App component to the DOM
 app
   .mount(document.getElementById("app"), "App")
   .then((instance) => {
     // App successfully mounted
-    console.log("Application successfully mounted! 🚀");
+    console.log(
+      `Application successfully mounted in ${
+        performance.now() - startTime
+      }ms! 💜 🚀`
+    );
   })
   .catch((error) => {
     // Handle mount errors

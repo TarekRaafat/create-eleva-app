@@ -222,7 +222,7 @@ function displaySuccessMessage(projectPath, config) {
   console.log("    Starts the development server.\n");
 
   console.log(`  ${chalk.cyan("npm run build")}`);
-  console.log("    Bundles the app for production.\n");
+  console.log("    Bundles and minifies the app for production. \n");
 
   console.log(`  ${chalk.cyan("npm run serve")}`);
   console.log("    Serves the production build locally.\n");
@@ -235,7 +235,7 @@ function displaySuccessMessage(projectPath, config) {
 
   console.log(`  ${chalk.cyan("npm run dev")}\n`);
 
-  console.log("Happy coding! 🚀");
+  console.log("Happy coding! 💜 🚀");
 }
 
 module.exports = { createProject };

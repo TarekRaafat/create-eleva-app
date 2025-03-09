@@ -74,7 +74,7 @@ const logger = {
     console.log(elevaPurple("  ███████ ██      ███████ ██    ██  █████  "));
     console.log(elevaPurple("  ██      ██      ██      ██    ██ ██   ██ "));
     console.log(elevaTeal("  █████   ██      █████   ██    ██ ███████ "));
-    console.log(elevaTeal("  ██      ██      ██       ██  ██  ██   ██ "));
+    console.log(elevaPurple("  ██      ██      ██       ██  ██  ██   ██ "));
     console.log(elevaPurple("  ███████ ███████ ███████   ████   ██   ██ "));
     console.log(
       "\n" +

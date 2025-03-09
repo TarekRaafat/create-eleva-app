@@ -95,10 +95,8 @@ button:active {
 
 /* Header */
 .app-header {
-  background-image: var(--eleva-gradient);
   color: var(--eleva-white);
   padding: 1rem 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .app-header .container {
@@ -118,13 +116,13 @@ button:active {
 }
 
 .nav-link {
-  color: var(--eleva-white);
+  color: var(--eleva-primary);
   font-weight: 500;
   position: relative;
 }
 
 .nav-link:hover {
-  color: var(--eleva-white);
+  color: var(--eleva-secondary);
 }
 
 .nav-link::after {

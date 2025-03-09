@@ -64,9 +64,8 @@ const HelloWorld = {
         min-width: 3rem;
         padding: 0.5rem;
         border-radius: 4px;
-        color: var(--eleva-dark);
-        background-image: var(--eleva-gradient);
-        color: white;
+        color: var(--eleva-primary);
+        border: solid 1px var(--eleva-primary);
       }
       
       .features {

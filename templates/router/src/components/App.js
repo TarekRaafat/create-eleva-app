@@ -48,7 +48,7 @@ const App = {
                 <li>
                   <a href="javascript:void(0)" 
                      class="nav-link ${ctx.isActive("/about") ? "active" : ""}" 
-                     @click="() => navigate('/about')">
+                     @click="() => navigate('about')">
                     About
                   </a>
                 </li>

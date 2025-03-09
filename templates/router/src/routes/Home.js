@@ -21,7 +21,7 @@ const Home = {
     }
 
     function goToAbout() {
-      navigate("/about");
+      navigate("about");
     }
 
     return {

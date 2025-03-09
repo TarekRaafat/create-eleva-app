@@ -32,8 +32,8 @@ const App = {
           </div>
           <nav>
             <ul class="nav-menu">
-              <li><a href="#" class="nav-link active">Home</a></li>
-              <li><a href="#" class="nav-link">Documentation</a></li>
+              <li><a href="/" class="nav-link active">Home</a></li>
+              <li><a href="https://tarekraafat.github.io/eleva" class="nav-link">Documentation</a></li>
               <li><a href="https://github.com/TarekRaafat/eleva" target="_blank" class="nav-link">GitHub</a></li>
             </ul>
           </nav>

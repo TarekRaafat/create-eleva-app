@@ -58,7 +58,7 @@ const logger = {
    * @param {string} message - Step description
    */
   step: (step, total, message) => {
-    console.log(chalk.cyan(`[${step}/${total}] `) + message);
+    console.log("\n" + chalk.cyan(`[${step}/${total}] `) + message);
   },
 
   /**

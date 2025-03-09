@@ -4,7 +4,7 @@ const fs = require("fs-extra");
 const path = require("path");
 const { execSync } = require("child_process");
 const ora = require("ora");
-const chalk = require("chalk"); // Add this line
+const chalk = require("chalk");
 const { promptForOptions } = require("./questions");
 const logger = require("./logger");
 
@@ -113,26 +113,61 @@ async function copyTemplateFiles(projectPath, config) {
  * @param {object} config - Project configuration
  */
 async function processTemplateFiles(projectPath, config) {
-  // List of files to process
-  const filesToProcess = ["package.json", "README.md", "public/index.html"];
+  const spinner = ora("Processing template files...").start();
 
-  for (const file of filesToProcess) {
-    const filePath = path.join(projectPath, file);
+  try {
+    // Process all JavaScript, HTML, CSS, and JSON files
+    const fileExtensions = [".js", ".html", ".css", ".json", ".md"];
 
-    // Skip if file doesn't exist
-    if (!(await fs.pathExists(filePath))) continue;
+    // Recursively find all files to process
+    const getFilesToProcess = async (dir) => {
+      const items = await fs.readdir(dir, { withFileTypes: true });
+      let files = [];
 
-    // Read file content
-    let content = await fs.readFile(filePath, "utf8");
+      for (const item of items) {
+        const fullPath = path.join(dir, item.name);
 
-    // Replace placeholders
-    content = content
-      .replace(/{{projectName}}/g, config.projectName)
-      .replace(/{{elevaVersion}}/g, "latest")
-      .replace(/{{elevaRouterVersion}}/g, "latest");
+        if (item.isDirectory()) {
+          // Skip node_modules and .git directories
+          if (item.name !== "node_modules" && item.name !== ".git") {
+            files = [...files, ...(await getFilesToProcess(fullPath))];
+          }
+        } else if (
+          item.isFile() &&
+          fileExtensions.includes(path.extname(item.name))
+        ) {
+          files.push(fullPath);
+        }
+      }
 
-    // Write updated content back
-    await fs.writeFile(filePath, content, "utf8");
+      return files;
+    };
+
+    const filesToProcess = await getFilesToProcess(projectPath);
+
+    // Process each file
+    for (const filePath of filesToProcess) {
+      // Read file content
+      let content = await fs.readFile(filePath, "utf8");
+
+      // Check if file contains any placeholders before processing
+      if (content.includes("{{")) {
+        // Replace placeholders
+        content = content
+          .replace(/{{projectName}}/g, config.projectName)
+          .replace(/{{elevaVersion}}/g, "latest")
+          .replace(/{{elevaRouterVersion}}/g, "latest")
+          .replace(/{{currentYear}}/g, new Date().getFullYear());
+
+        // Write updated content back
+        await fs.writeFile(filePath, content, "utf8");
+      }
+    }
+
+    spinner.succeed("Template files processed successfully.");
+  } catch (error) {
+    spinner.fail("Failed to process template files.");
+    throw error;
   }
 }
 

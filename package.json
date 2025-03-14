@@ -1,6 +1,6 @@
 {
   "name": "create-eleva-app",
-  "version": "0.1.0-beta.5",
+  "version": "0.2.0-beta",
   "description": "Create Eleva apps with zero configuration",
   "main": "src/index.js",
   "bin": {

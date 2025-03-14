@@ -28,22 +28,20 @@ async function promptForOptions(projectName, options) {
 
   const questions = [];
 
-  // Validate project name if provided
-  if (!projectName) {
-    questions.push({
-      type: "input",
-      name: "projectName",
-      message: "What is the name of your project?",
-      default: "eleva-app",
-      validate: (input) => {
-        const validation = validateProjectName(input);
-        if (validation.validForNewPackages) return true;
-        return `Invalid project name: ${
-          validation.errors && validation.errors.join(", ")
-        }`;
-      },
-    });
-  }
+  // Always ask for the project name
+  questions.push({
+    type: "input",
+    name: "projectName",
+    message: "What is the name of your project?",
+    default: projectName,
+    validate: (input) => {
+      const validation = validateProjectName(input);
+      if (validation.validForNewPackages) return true;
+      return `Invalid project name: ${
+        validation.errors && validation.errors.join(", ")
+      }`;
+    },
+  });
 
   // Only ask for router if not explicitly set in options
   if (options.router === undefined) {
@@ -77,7 +75,8 @@ async function promptForOptions(projectName, options) {
   const answers = await inquirer.prompt(questions);
 
   return {
-    projectName: projectName || answers.projectName,
+    // Always use the name from the prompt
+    projectName: answers.projectName,
     useRouter:
       options.router === undefined ? answers.useRouter : options.router,
     useTypeScript:

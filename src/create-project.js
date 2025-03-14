@@ -15,14 +15,27 @@ const logger = require("./logger");
  */
 async function createProject(projectPath, options = {}) {
   try {
-    // Extract project name from path
-    const projectName = path.basename(projectPath);
-
     // Display welcome banner
     logger.banner();
 
+    // Extract project name from path (may be changed during setup)
+    let projectName = path.basename(projectPath);
+
+    // Default to 'eleva-app' if the project name is the same as the current directory
+    // (This happens when running in the current directory)
+    if (projectPath === process.cwd()) {
+      projectName = "eleva-app";
+    }
+
     // Get configuration through interactive prompts
     const config = await promptForOptions(projectName, options);
+
+    // // Update projectPath if the user changed the name during setup
+    // if (config.projectName !== projectName) {
+    // User provided a different name, update the project path
+    projectPath = path.resolve(process.cwd(), config.projectName);
+    logger.info(`Project will be created in: ${projectPath}`);
+    // }
 
     // Create project directory
     await createProjectDirectory(projectPath);
